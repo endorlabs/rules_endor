@@ -23,7 +23,7 @@ http_archive(
 )
 
 load("@rules_endor//endorctl:repositories.bzl", "rules_endorctl_toolchains")
-rules_endorctl_toolchains(version = "1.6.35")
+rules_endorctl_toolchains()
 ```
 
 ## Development
