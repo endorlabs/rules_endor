@@ -15,18 +15,16 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_endor",
-    sha256 = "523a4e06f0746661e092d083757263a249fedca535bd6dd819a8c50de074731a",
+    sha256 = "b7a2ae4f82b267241ca94ca15369f3039e80b37a8245801667a685fe29939a35",
     strip_prefix = "rules_endor-1.0.0",
     urls = [
-        "https://github.com/endorlabs/rules_endor/archive/refs/tags/v1.0.0.zip",
+        "https://github.com/endorlabs/rules_endor/archive/refs/tags/v1.0.0.tar.gz",
     ],
 )
 
 load("@rules_endor//endorctl:repositories.bzl", "rules_endorctl_toolchains")
 rules_endorctl_toolchains(version = "1.6.35")
 ```
-
-Refer to the Bazel [docs](https://docs.buf.build/build-systems/bazel).
 
 ## Development
 
