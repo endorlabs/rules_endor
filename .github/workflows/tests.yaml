@@ -1,0 +1,29 @@
+name: Tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  tests:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # Caches and restores the bazelisk download directory, the bazel build directory.
+      - name: Cache bazel
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cache/bazelisk
+            ~/.cache/bazel
+          key: ${{ runner.os }}-bazel-cache
+      
+      - uses: actions/checkout@v2
+      
+      - name: help
+        run: bazel run @rules_endorctl_toolchains//:endorctl -- --help 
+        
