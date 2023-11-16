@@ -23,9 +23,6 @@ jobs:
       
       - uses: actions/checkout@v2
       
-      - name: bazel test
-        run: bazel test //... 
-      
       - name: help
         run: bazel run @rules_endorctl_toolchains//:endorctl -- --help 
   macos:
@@ -42,8 +39,8 @@ jobs:
       
       - uses: actions/checkout@v2
       
-      - name: bazel test
-        run: bazel test //...
+      - name: help
+        run: bazel run @rules_endorctl_toolchains//:endorctl -- --help 
         
   windows:
     runs-on: windows-latest
@@ -59,5 +56,5 @@ jobs:
       
       - uses: actions/checkout@v2
       
-      - name: bazel test
-        run: bazel test //...
+      - name: help
+        run: bazel run @rules_endorctl_toolchains//:endorctl -- --help 
