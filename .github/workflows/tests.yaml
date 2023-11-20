@@ -26,4 +26,7 @@ jobs:
       
       - name: help
         run: bazel run @rules_endorctl_toolchains//:endorctl -- --help 
+
+      - name: test
+        run: bazel test //...
         
