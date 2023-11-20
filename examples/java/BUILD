@@ -1,4 +1,5 @@
 load("@rules_java//java:defs.bzl", "java_binary", "java_library", "java_test")
+load("//endorctl:defs.bzl", "endorctl_scan")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -25,5 +26,14 @@ java_test(
         ":java-maven-lib",
         "@maven//:junit_junit",
     ]
+)
 
+endorctl_scan(
+    name = "endorctl-scan",
+    targets = [
+        ":java-maven-lib",
+    ],
+    scan_args = [
+        "--namespace=test_namespace"
+    ],
 )

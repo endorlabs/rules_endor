@@ -9,3 +9,11 @@ bzl_library(
         "//endorctl/internal:toolchain",
     ],
 )
+
+bzl_library(
+    name = "defs",
+    srcs = ["defs.bzl"],
+    deps = [
+        "//endorctl/internal:scan",
+    ],
+)
