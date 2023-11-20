@@ -147,9 +147,7 @@ def _endorctl_download_releases_impl(ctx):
 
     ctx.report_progress("Finding sha of endorctl")
     ctx.download(
-        # TODO: activate this once in prod.
-        #url = "{}/meta/version/{}".format(repository_url, version),
-        url = "{}/meta/version".format(repository_url),
+        url = "{}/meta/version/v{}".format(repository_url, version),
         output = "sha256s.json",
     )
     sha256s_data = ctx.read("sha256s.json")
