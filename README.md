@@ -26,6 +26,48 @@ load("@rules_endor//endorctl:repositories.bzl", "rules_endorctl_toolchains")
 rules_endorctl_toolchains()
 ```
 
+## Rules
+
+You have two choices to use `endorctl` through the bazel rule, either by using the CLI directly or by using the endor rules.
+
+```
+bazel run @rules_endorctl_toolchains//:endorctl -- --help
+```
+
+or
+
+```starlark
+load("@rules_java//java:defs.bzl", "java_binary")
+load("@rules_endor//endorctl:defs.bzl", "endorctl_scan")
+
+package(default_visibility = ["//visibility:public"])
+
+java_library(
+    name = "java-maven-lib",
+    srcs = glob([
+        "src/main/java/com/example/myproject/App.java",
+    ]),
+    deps = [
+        "@maven//:com_google_code_findbugs_jsr305",
+        "@maven//:com_google_errorprone_error_prone_annotations",
+        "@maven//:com_google_j2objc_j2objc_annotations",
+        "@maven//:org_checkerframework_checker_qual",
+        "@maven//:org_codehaus_mojo_animal_sniffer_annotations",
+        "@maven//:org_apache_commons_commons_text",
+    ],
+)
+
+endorctl_scan(
+    name = "endorctl-scan",
+    targets = [
+        ":java-maven-lib",
+    ],
+    scan_args = [
+        "--namespace=test_namespace"
+    ],
+)
+```
+
 ## Development
 
 The repository follows the [official recommendation](https://bazel.build/rules/deploying) on deploying bazel rules.
