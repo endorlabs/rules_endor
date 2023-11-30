@@ -191,13 +191,13 @@ endorctl_download_releases = repository_rule(
         ),
         "repository_url": attr.string(
             doc = "Repository url base used for downloads",
-            default = "",
+            default = "https://api.endorlabs.com",
         ),
     },
 )
 
 # buildifier: disable=unnamed-macro
-def rules_endorctl_toolchains(name = _TOOLCHAINS_REPO, version = None, repository_url = "https://api.endorlabs.com"):
+def rules_endorctl_toolchains(name = _TOOLCHAINS_REPO, version = None, repository_url = None):
     """rules_endorctl_toolchains sets up toolchains for endorctl
 
     Args:
