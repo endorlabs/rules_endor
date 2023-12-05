@@ -60,12 +60,18 @@ java_library(
 endorctl_scan(
     name = "endorctl-scan",
     targets = [
-        ":java-maven-lib",
+        ":java-maven-lib-test",
     ],
     scan_args = [
         "--namespace=test_namespace"
     ],
 )
+```
+
+Running the rules:
+
+```bash
+bazel test --test_env=ENDOR_TOKEN --test_output=all --test_env=ENDOR_SCAN_PATH=$(pwd) --test_env=HOME --sandbox_writable_path=$HOME/.endorctl //examples/java:endorctl-scan
 ```
 
 ## Development

@@ -31,9 +31,9 @@ java_test(
 endorctl_scan(
     name = "endorctl-scan",
     targets = [
-        ":java-maven-lib",
+        ":java-maven-test",
     ],
     scan_args = [
-        "--namespace=test_namespace"
+        "--namespace=alex",
     ],
 )

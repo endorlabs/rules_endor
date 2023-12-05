@@ -7,10 +7,16 @@ _DOC = """
 _TOOLCHAIN = str(Label("//endorctl/tools/endorctl:toolchain_type"))
 
 def _endorctl_scan(ctx):
+    
+    # TODO
+    # Right now we need to run the rule like
+    # bazel test --test_env=ENDOR_TOKEN --test_output=all --test_env=ENDOR_SCAN_PATH=$(pwd) --test_env=HOME --sandbox_writable_path=$HOME/.endorctl  //examples/java:endorctl-scan
+    # Ideally the ENDOR_SCAN_PATH, HOME and the sandbox_writable_path should not be needed.
+
     cmd = "{} scan --use-bazel".format(ctx.toolchains[_TOOLCHAIN].cli.short_path)
 
     for target in ctx.attr.targets:
-        cmd = "{} --bazel-include-targets={}".format(cmd, str(target.label))
+        cmd = "{} --bazel-include-targets={}".format(cmd, str(target.label)[1:])
 
     for args in ctx.attr.scan_args:
         cmd = "{} {}".format(cmd, args)
