@@ -142,6 +142,8 @@ def _endorctl_download_releases_impl(ctx):
     endor_cpu = cpu
     if cpu == "x86_64":
         endor_cpu = "amd64"
+    if os == "linux" and cpu == "aarch64":
+        endor_cpu = "arm64"
 
     bin = "endorctl_v{}_{}_{}".format(version, os, endor_cpu)
 
@@ -160,6 +162,8 @@ def _endorctl_download_releases_impl(ctx):
         sum = sha256s["ARCH_TYPE_WINDOWS_AMD64"]
     if os == "macos" and cpu == "arm64":
         sum = sha256s["ARCH_TYPE_MACOS_ARM64"]
+    if os == "linux" and cpu == "aarch64":
+        sum = sha256s["ARCH_TYPE_LINUX_ARM64"]
 
     ctx.report_progress("Downloading " + bin)
 
